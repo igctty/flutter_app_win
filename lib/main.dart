@@ -55,7 +55,7 @@ class TutorialHome extends StatelessWidget {
       ),
       // body is the majority of the screen.
       body: Center(
-        child: MyButton(),
+        child: Counter(),
       ),
       floatingActionButton: FloatingActionButton(
         tooltip: 'Add', // used by assistive technologies
@@ -114,6 +114,20 @@ class CounterIncrementor extends StatelessWidget {
   }
 }
 
+class CounterDecrementor extends StatelessWidget {
+  CounterDecrementor({this.onPressed});
+
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      child: Text('Decrement'),
+    );
+  }
+}
+
 class Counter extends StatefulWidget {
   // This class is the configuration for the state. It holds the
   // values (in this case nothing) provided by the parent and used
@@ -139,6 +153,19 @@ class _CounterState extends State<Counter> {
     });
   }
 
+  void _decrement() {
+    setState(() {
+      // This call to setState tells the Flutter framework that
+      // something has changed in this State, which causes it to rerun
+      // the build method below so that the display can reflect the
+      // updated values. If you change _counter without calling
+      // setState(), then the build method won't be called again,
+      // and so nothing would appear to happen.
+      _counter--;
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called,
@@ -150,6 +177,7 @@ class _CounterState extends State<Counter> {
     return Row(
       children: <Widget>[
         CounterIncrementor(onPressed: _increment),
+        CounterDecrementor(onPressed: _decrement),
         CounterDisplay(count: _counter),
       ],
     );
