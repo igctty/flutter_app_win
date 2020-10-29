@@ -27,6 +27,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add'),
+        // TODO: フローティングアクションボタンで右下に＋持っていく
         leading: IconButton(
           icon: const Icon(Icons.add),
           onPressed: () {
@@ -36,6 +37,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           },
         ),
       ),
+      // TODO: アイテムタップできるようにする。
+      // TODO: アイテムタップしたら詳細に遷移させる。
       body: CustomScrollView(
         center: centerKey,
         slivers: <Widget>[
