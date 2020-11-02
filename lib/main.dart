@@ -81,6 +81,10 @@ class CreateTodoPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: FlatButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: Text('もどる'),
         ),
       ),
     );
