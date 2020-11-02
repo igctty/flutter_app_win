@@ -27,7 +27,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add'),
-        // TODO: フローティングアクションボタンで右下に＋持っていく
         // TODO: 入力したアイテムを追加できるようにする
         leading: IconButton(
           icon: const Icon(Icons.add),
@@ -41,9 +40,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       // TODO: アイテムタップできるようにする。
       // TODO: アイテムタップしたら詳細に遷移させる。
       // TODO: 削除アイコンつける
+      // TODO: 削除アイコンをタップできる
       // TODO: 削除アイコンをタップするとアイテムを消せる
-      // TODO: 削除アイコンをタップするとアイテムを消せる
-
       body: CustomScrollView(
         center: centerKey,
         slivers: <Widget>[
@@ -62,6 +60,28 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) {
+              return CreateTodoPage();
+            }),
+          );
+        },
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+class CreateTodoPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: FlatButton(
+        ),
       ),
     );
   }
