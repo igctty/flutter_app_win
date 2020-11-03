@@ -26,16 +26,16 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     const Key centerKey = ValueKey('bottom-sliver-list');
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add'),
-        // TODO: 入力したアイテムを追加できるようにする
-        leading: IconButton(
-          icon: const Icon(Icons.add),
-          onPressed: () {
-            setState(() {
-              items.add(items.length);
-            });
-          },
-        ),
+        title: const Text('ホーム'),
+        // // TODO: 入力したアイテムを追加できるようにする
+        // leading: IconButton(
+        //   icon: const Icon(Icons.add),
+        //   onPressed: () {
+        //     setState(() {
+        //       items.add(items.length);
+        //     });
+        //   },
+        // ),
       ),
       // TODO: アイテムタップできるようにする。
       // TODO: アイテムタップしたら詳細に遷移させる。
@@ -65,7 +65,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         onPressed: (){
           Navigator.of(context).push(
             MaterialPageRoute(builder: (context) {
-              return CreateTodoPage();
+              return TodoAddPage();
             }),
           );
         },
@@ -75,17 +75,52 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   }
 }
 
-class CreateTodoPage extends StatelessWidget {
+class TodoAddPage extends StatefulWidget {
+  @override
+  _TodoAddPageState createState() => _TodoAddPageState();
+}
+
+class _TodoAddPageState extends State<TodoAddPage> {
+  String _context = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: FlatButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: Text('もどる'),
-        ),
+      appBar: AppBar(
+        title: Text('リスト追加'),
+      ),
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            Text(
+                _context, style: TextStyle(color: Colors.blue)
+            ),
+            TextField(
+              onChanged: (String value) {
+                setState(() {
+                  _context = value;
+                });
+              },
+            ),
+            Container(
+              width: double.infinity,
+              child: RaisedButton(
+                color: Colors.blue,
+                onPressed: () {},
+                child: Text('TODO 追加', style: TextStyle(color: Colors.white)),
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              child: FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('キャンセル'),
+              ),
+            ),
+          ],
+        )
       ),
     );
   }
