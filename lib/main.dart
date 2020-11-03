@@ -27,15 +27,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('ホーム'),
-        // // TODO: 入力したアイテムを追加できるようにする
-        // leading: IconButton(
-        //   icon: const Icon(Icons.add),
-        //   onPressed: () {
-        //     setState(() {
-        //       items.add(items.length);
-        //     });
-        //   },
-        // ),
       ),
       // TODO: アイテムタップできるようにする。
       // TODO: アイテムタップしたら詳細に遷移させる。
@@ -80,6 +71,7 @@ class TodoAddPage extends StatefulWidget {
   _TodoAddPageState createState() => _TodoAddPageState();
 }
 
+// TODO: TODO 追加ボタンを押してホームに表示させる。
 class _TodoAddPageState extends State<TodoAddPage> {
   String _context = '';
 
