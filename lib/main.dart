@@ -19,7 +19,7 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  List<int> items = [0];
+  List<String> items = [];
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +42,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   (BuildContext context, int index) {
                 return Container(
                   alignment: Alignment.center,
-                  color: Colors.grey[200 + items[index] % 2 * 100],
+                  color: Colors.grey[200 + index % 2 * 100],
                   height: 100 ,
-                  child: Text('#${items[index]}: TODO-item'),
+                  child: Text('#$index: ${items[index]}'),
                 );
               },
               childCount: items.length,
@@ -53,12 +53,17 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.of(context).push(
+        onPressed: () async {
+          final todoItemContext = await Navigator.of(context).push(
             MaterialPageRoute(builder: (context) {
               return TodoAddPage();
             }),
           );
+          if (todoItemContext != null) {
+            setState(() {
+              items.add(todoItemContext);
+            });
+          }
         },
         child: Icon(Icons.add),
       ),
@@ -71,7 +76,6 @@ class TodoAddPage extends StatefulWidget {
   _TodoAddPageState createState() => _TodoAddPageState();
 }
 
-// TODO: TODO 追加ボタンを押してホームに表示させる。
 class _TodoAddPageState extends State<TodoAddPage> {
   String _context = '';
 
@@ -98,7 +102,9 @@ class _TodoAddPageState extends State<TodoAddPage> {
               width: double.infinity,
               child: RaisedButton(
                 color: Colors.blue,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pop(_context);
+                },
                 child: Text('TODO 追加', style: TextStyle(color: Colors.white)),
               ),
             ),
