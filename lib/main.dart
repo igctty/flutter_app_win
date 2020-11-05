@@ -44,7 +44,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   alignment: Alignment.center,
                   color: Colors.grey[200 + index % 2 * 100],
                   height: 100 ,
-                  child: Text('#$index: ${items[index]}'),
+                  child: Text('#${index+1}: ${items[index]}'),
                 );
               },
               childCount: items.length,
