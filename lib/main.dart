@@ -85,41 +85,50 @@ class _TodoAddPageState extends State<TodoAddPage> {
       appBar: AppBar(
         title: Text('リスト追加'),
       ),
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            Text(
-                _context, style: TextStyle(color: Colors.blue)
+      body: Column(
+        children: <Widget>[
+          Container(
+            child: Column(
+              children: <Widget>[
+                Text(_context, style: TextStyle(color: Colors.blue)),
+                TextField(
+                  onChanged: (String value) {
+                    setState(() {
+                      _context = value;
+                    });
+                  },
+                ),
+              ],
             ),
-            TextField(
-              onChanged: (String value) {
-                setState(() {
-                  _context = value;
-                });
-              },
+          ),
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  height: 50,
+                  child: RaisedButton(
+                    color: Colors.blue,
+                    onPressed: () {
+                      Navigator.of(context).pop(_context);
+                    },
+                    child: Text('TODO 追加', style: TextStyle(color: Colors.white)),
+                  ),
+                ),
+                Container(
+                  height: 50,
+                  child: FlatButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('キャンセル'),
+                  ),
+                ),
+              ],
             ),
-            Container(
-              width: double.infinity,
-              child: RaisedButton(
-                color: Colors.blue,
-                onPressed: () {
-                  Navigator.of(context).pop(_context);
-                },
-                child: Text('TODO 追加', style: TextStyle(color: Colors.white)),
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              child: FlatButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('キャンセル'),
-              ),
-            ),
-          ],
-        )
-      ),
+          ),
+        ]
+      )
     );
   }
 }
