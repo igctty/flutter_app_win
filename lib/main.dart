@@ -28,7 +28,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       appBar: AppBar(
         title: const Text('ホーム'),
       ),
-      // TODO: アイテムタップできるようにする。
       // TODO: アイテムタップしたら詳細に遷移させる。
       // TODO: 削除アイコンつける
       // TODO: 削除アイコンをタップできる
@@ -41,10 +40,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
                 return Container(
-                  alignment: Alignment.center,
-                  color: Colors.grey[200 + index % 2 * 100],
-                  height: 100 ,
-                  child: Text('#${index+1}: ${items[index]}'),
+                  child: FlatButton(
+                    color: Colors.grey[200 + index % 2 * 100],
+                    onPressed: (){},
+                    height: 100 ,
+                    child: Text('#${index+1}: ${items[index]}'),
+                  ),
                 );
               },
               childCount: items.length,
