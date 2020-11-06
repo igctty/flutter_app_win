@@ -31,6 +31,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       // TODO: アイテムタップしたら詳細に遷移させる。
       // TODO: 削除アイコンをタップできる
       // TODO: 削除アイコンをタップするとアイテムを消せる
+      // TODO: TODOアイテムの横幅と削除アイコンの横幅を画面内に収める
       body: CustomScrollView(
         center: centerKey,
         slivers: <Widget>[
