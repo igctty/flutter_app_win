@@ -29,7 +29,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         title: const Text('ホーム'),
       ),
       // TODO: アイテムタップしたら詳細に遷移させる。
-      // TODO: 削除アイコンつける
       // TODO: 削除アイコンをタップできる
       // TODO: 削除アイコンをタップするとアイテムを消せる
       body: CustomScrollView(
@@ -40,11 +39,20 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
                 return Container(
-                  child: FlatButton(
-                    color: Colors.grey[200 + index % 2 * 100],
-                    onPressed: (){},
-                    height: 100 ,
-                    child: Text('#${index+1}: ${items[index]}'),
+                  child: Row(
+                    children: <Widget>[
+                      FlatButton(
+                        color     : Colors.grey[200 + index % 2 * 100],
+                        onPressed : (){},
+                        height    : 100 ,
+                        child     : Text('#${index+1}: ${items[index]}'),
+                      ),
+                      IconButton(
+                        icon      : Icon(Icons.remove_circle),
+                        color     : Colors.red,
+                        onPressed : null,
+                      ),
+                    ]
                   ),
                 );
               },
