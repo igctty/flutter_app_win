@@ -29,7 +29,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         title: const Text('ホーム'),
       ),
       // TODO: アイテムタップしたら詳細に遷移させる。
-      // TODO: 削除アイコンをタップできる
       // TODO: 削除アイコンをタップするとアイテムを消せる
       // TODO: TODOアイテムの横幅と削除アイコンの横幅を画面内に収める
       body: CustomScrollView(
@@ -51,7 +50,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       IconButton(
                         icon      : Icon(Icons.remove_circle),
                         color     : Colors.red,
-                        onPressed : null,
+                        onPressed : (){},
                       ),
                     ]
                   ),
