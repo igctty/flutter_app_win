@@ -28,7 +28,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       appBar: AppBar(
         title: const Text('ホーム'),
       ),
-      // TODO: アイテムタップしたら詳細に遷移させる。
       // TODO: TODOアイテムの横幅と削除アイコンの横幅を画面内に収める
       body: CustomScrollView(
         center: centerKey,
@@ -42,7 +41,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     children: <Widget>[
                       FlatButton(
                         color     : Colors.grey[200 + index % 2 * 100],
-                        onPressed : (){},
+                        onPressed : (){
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) {
+                              return TodoDetailPage();
+                            }),
+                          );
+                        },
                         height    : 100 ,
                         child     : Text('#${index+1}: ${items[index]}'),
                       ),
@@ -82,6 +87,53 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     );
   }
 }
+
+class TodoDetailPage extends StatefulWidget {
+  @override
+  _TodoDetailPageState createState() => _TodoDetailPageState();
+}
+
+class _TodoDetailPageState extends State<TodoDetailPage> {
+  String _context = '';
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('TODO 詳細'),
+        ),
+        body: Column(
+            children: <Widget>[
+              Container(
+                child: Column(
+                  children: <Widget>[
+                    Text(_context, style: TextStyle(color: Colors.blue)),
+                  ],
+                ),
+              ),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      height: 50,
+                      child: FlatButton(
+                        color: Colors.blue,
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('戻る', style: TextStyle(color: Colors.white)),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ]
+        )
+    );
+  }
+}
+
 
 class TodoAddPage extends StatefulWidget {
   @override
