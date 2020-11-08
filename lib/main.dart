@@ -28,6 +28,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       appBar: AppBar(
         title: const Text('ホーム'),
       ),
+      // TODO: 詳細ページ遷移時にアイテムの内容を引き継ぐようにする
       // TODO: TODOアイテムの横幅と削除アイコンの横幅を画面内に収める
       body: CustomScrollView(
         center: centerKey,
@@ -93,6 +94,7 @@ class TodoDetailPage extends StatefulWidget {
   _TodoDetailPageState createState() => _TodoDetailPageState();
 }
 
+// TODO: 表示エリアを設ける
 class _TodoDetailPageState extends State<TodoDetailPage> {
   String _context = '';
 
