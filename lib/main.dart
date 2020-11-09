@@ -45,7 +45,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         onPressed : (){
                           Navigator.of(context).push(
                             MaterialPageRoute(builder: (context) {
-                              return TodoDetailPage();
+                              return TodoDetailPage(todoItem: items[index]);
                             }),
                           );
                         },
@@ -89,14 +89,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   }
 }
 
-class TodoDetailPage extends StatefulWidget {
-  @override
-  _TodoDetailPageState createState() => _TodoDetailPageState();
-}
-
-// TODO: 表示エリアを設ける
-class _TodoDetailPageState extends State<TodoDetailPage> {
-  String _context = '';
+class TodoDetailPage extends StatelessWidget {
+  final String todoItem;
+  TodoDetailPage({this.todoItem});
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +104,16 @@ class _TodoDetailPageState extends State<TodoDetailPage> {
               Container(
                 child: Column(
                   children: <Widget>[
-                    Text(_context, style: TextStyle(color: Colors.blue)),
+                    Container(
+                      height: 50,
+                      child: Text(
+                        todoItem,
+                        style: TextStyle(
+                            fontSize:24,
+                            color: Colors.blue,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
