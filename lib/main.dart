@@ -28,7 +28,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       appBar: AppBar(
         title: const Text('ホーム'),
       ),
-      // TODO: TODOアイテムの横幅と削除アイコンの横幅を画面内に収める
       body: CustomScrollView(
         center: centerKey,
         slivers: <Widget>[
@@ -39,26 +38,32 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 return Container(
                   child: Row(
                     children: <Widget>[
-                      FlatButton(
-                        color     : Colors.grey[200 + index % 2 * 100],
-                        onPressed : (){
-                          Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) {
-                              return TodoDetailPage(todoItem: items[index]);
-                            }),
-                          );
-                        },
-                        height    : 100 ,
-                        child     : Text('#${index+1}: ${items[index]}', overflow: TextOverflow.ellipsis,),
+                      Expanded(
+                        flex :8,
+                        child:FlatButton(
+                          color     : Colors.grey[200 + index % 2 * 100],
+                          onPressed : (){
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) {
+                                return TodoDetailPage(todoItem: items[index]);
+                              }),
+                            );
+                          },
+                          height    : 100 ,
+                          child     : Text('#${index+1}: ${items[index]}', overflow: TextOverflow.ellipsis,),
+                        ),
                       ),
-                      IconButton(
-                        icon      : Icon(Icons.remove_circle),
-                        color     : Colors.red,
-                        onPressed : (){
-                          setState(() {
-                            items.removeAt(index);
-                          });
-                        },
+                      Expanded(
+                        flex :1,
+                        child:IconButton(
+                          icon      : Icon(Icons.remove_circle),
+                          color     : Colors.red,
+                          onPressed : (){
+                            setState(() {
+                              items.removeAt(index);
+                            });
+                          },
+                        ),
                       ),
                     ]
                   ),
