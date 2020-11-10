@@ -49,7 +49,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                           );
                         },
                         height    : 100 ,
-                        child     : Text('#${index+1}: ${items[index]}'),
+                        child     : Text('#${index+1}: ${items[index]}', overflow: TextOverflow.ellipsis,),
                       ),
                       IconButton(
                         icon      : Icon(Icons.remove_circle),
@@ -107,6 +107,7 @@ class TodoDetailPage extends StatelessWidget {
                       height: 50,
                       child: Text(
                         todoItem,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                             fontSize:24,
                             color: Colors.blue,
