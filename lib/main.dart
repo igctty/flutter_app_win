@@ -39,8 +39,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   child: Row(
                     children: <Widget>[
                       Expanded(
-                        flex :8,
-                        child:FlatButton(
+                        flex  : 8,
+                        child :FlatButton(
                           color     : Colors.grey[200 + index % 2 * 100],
                           onPressed : (){
                             Navigator.of(context).push(
@@ -54,18 +54,19 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         ),
                       ),
                       Expanded(
-                        flex :1,
-                        child:IconButton(
-                          icon      : Icon(Icons.remove_circle),
-                          color     : Colors.red,
+                        flex  : 2,
+                        child : FlatButton(
+                          color     : Colors.grey[200 + index % 2 * 100],
                           onPressed : (){
                             setState(() {
                               items.removeAt(index);
                             });
                           },
+                          height    : 100 ,
+                          child     : Icon(Icons.delete),
                         ),
                       ),
-                    ]
+                    ],
                   ),
                 );
               },
