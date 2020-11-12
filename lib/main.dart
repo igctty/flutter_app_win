@@ -63,7 +63,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                             });
                           },
                           height    : 100 ,
-                          child     : Icon(Icons.delete),
+                          child     : Icon(Icons.delete, color: Colors.red),
                         ),
                       ),
                     ],
