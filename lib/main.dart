@@ -1,63 +1,101 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+const kColorPurple = Color(0xFF8337EC);
+const kColorPink = Color(0xFFFF006F);
+const kColorIndicatorBegin = kColorPink;
+const kColorIndicatorEnd = kColorPurple;
+const kColorTitle = Color(0xFF616161);
+const kColorText = Color(0xFF9E9E9E);
+const kElevation = 4.0;
+
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final appTitle = 'Form Validation Demo';
-
     return MaterialApp(
-      title: appTitle,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(appTitle),
+      debugShowCheckedModeBanner: false,
+      title: 'UI Template',
+      theme: ThemeData.light().copyWith(
+        primaryColor: Colors.white,
+        primaryTextTheme: TextTheme(
+          headline6: TextStyle(color: kColorTitle),
         ),
-        body: MyCustomForm(),
+        backgroundColor: Colors.white,
+      ),
+      home: MainPage(),
+    );
+  }
+}
+
+class MainPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
+      appBar: AppBar(
+        title: Text('Main Page'),
+        centerTitle: false,
+        elevation: 0,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            CategoriesButtons(),
+          ],
+        ),
       ),
     );
   }
 }
 
-// Create a Form widget.
-class MyCustomForm extends StatefulWidget {
-  @override
-  MyCustomFormState createState() {
-    return MyCustomFormState();
-  }
-}
 
-class MyCustomFormState extends State<MyCustomForm> {
-  final _formKey = GlobalKey<FormState>();
-
+class _CategoriesButton extends StatelessWidget {
+  final String text;
+  const _CategoriesButton({
+    Key key,
+    @required this.text,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          TextFormField(
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState.validate()) {
-                  Scaffold.of(context)
-                      .showSnackBar(SnackBar(content: Text('Success')));
-                }
-              },
-              child: Text('Submit'),
-            ),
-          ),
-        ],
+    return MaterialButton(
+      color: Colors.white,
+      elevation: kElevation,
+      height: 24,
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      onPressed: () {},
+      child: Text(
+        text,
+        style: TextStyle(color: kColorTitle, fontSize: 12),
+      ),
+    );
+  }
+}
+class CategoriesButtons extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            SizedBox(width: 16),
+            _CategoriesButton(text: 'Category 1'),
+            SizedBox(width: 16),
+            _CategoriesButton(text: 'Category 2'),
+            SizedBox(width: 16),
+            _CategoriesButton(text: 'Category hogehoge'),
+            SizedBox(width: 16),
+            _CategoriesButton(text: 'Category fugafuga'),
+            SizedBox(width: 16),
+          ],
+        ),
       ),
     );
   }
